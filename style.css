@@ -1,0 +1,258 @@
+/* =========================
+   course49 v2
+   Part 1
+========================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#0b0b0b;
+color:#fff;
+}
+
+a{
+text-decoration:none;
+color:white;
+}
+
+img{
+display:block;
+width:100%;
+}
+
+.header{
+position:sticky;
+top:0;
+z-index:1000;
+background:#111;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px;
+border-bottom:1px solid #222;
+}
+
+.logo{
+font-size:32px;
+font-weight:bold;
+color:#E50914;
+}
+
+nav{
+display:flex;
+gap:18px;
+}
+
+nav a{
+font-size:16px;
+transition:.3s;
+}
+
+nav a:hover{
+color:#E50914;
+}
+
+.hero{
+padding:20px;
+}
+
+.banner{
+background:linear-gradient(135deg,#8b0000,#E50914);
+border-radius:20px;
+padding:40px 25px;
+margin-bottom:20px;
+}
+
+.banner h1{
+font-size:38px;
+margin-bottom:12px;
+}
+
+.banner p{
+font-size:18px;
+color:#eee;
+margin-bottom:20px;
+}
+
+.explore-btn{
+background:#fff;
+color:#000;
+padding:14px 26px;
+border:none;
+border-radius:10px;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.search{
+width:100%;
+padding:16px;
+margin:20px 0;
+border:none;
+border-radius:12px;
+font-size:17px;
+outline:none;
+}
+
+.categories{
+display:flex;
+gap:12px;
+overflow-x:auto;
+padding-bottom:10px;
+}
+
+.categories::-webkit-scrollbar{
+display:none;
+}
+
+.categories button{
+background:#222;
+color:white;
+border:none;
+padding:12px 18px;
+border-radius:999px;
+white-space:nowrap;
+cursor:pointer;
+transition:.3s;
+}
+
+.categories button:hover{
+background:#E50914;
+}
+
+.title{
+padding:20px;
+font-size:34px;
+font-weight:bold;
+}
+
+/* =========================
+   course49 v2
+   Part 2
+========================= */
+
+#courses{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.course-card{
+background:#181818;
+border-radius:15px;
+overflow:hidden;
+transition:.3s;
+box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+.course-card:hover{
+transform:translateY(-6px);
+}
+
+.course-card img{
+height:150px;
+object-fit:cover;
+}
+
+.course-content{
+padding:15px;
+}
+
+.course-content h3{
+font-size:18px;
+margin-bottom:10px;
+line-height:1.4;
+}
+
+.price{
+font-size:22px;
+font-weight:bold;
+color:#00ff99;
+margin-bottom:10px;
+}
+
+.category{
+display:inline-block;
+background:#2a2a2a;
+padding:6px 12px;
+border-radius:20px;
+font-size:13px;
+margin-bottom:15px;
+}
+
+.buy-btn{
+display:block;
+width:100%;
+background:#E50914;
+color:white;
+padding:14px;
+border-radius:10px;
+text-align:center;
+font-weight:bold;
+transition:.3s;
+}
+
+.buy-btn:hover{
+background:#ff3030;
+}
+
+footer{
+margin-top:50px;
+padding:30px;
+text-align:center;
+background:#111;
+color:#999;
+border-top:1px solid #222;
+}
+
+@media(max-width:768px){
+
+.header{
+flex-direction:column;
+gap:15px;
+}
+
+.logo{
+font-size:28px;
+}
+
+nav{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:12px;
+}
+
+.banner{
+padding:25px;
+}
+
+.banner h1{
+font-size:28px;
+}
+
+.banner p{
+font-size:15px;
+}
+
+.title{
+font-size:28px;
+padding:15px;
+}
+
+#courses{
+grid-template-columns:1fr;
+}
+
+.course-card img{
+height:190px;
+}
+
+}

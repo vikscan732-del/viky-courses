@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>course49 Admin</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo">
+
+course49 Admin
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="banner">
+
+<h1>Admin Dashboard</h1>
+
+<p>Add new premium courses</p>
+
+</div>
+
+<form id="courseForm">
+
+<input
+id="title"
+type="text"
+placeholder="Course Title"
+required>
+
+<input
+id="price"
+type="number"
+placeholder="Course Price"
+required>
+
+<input
+id="image"
+type="text"
+placeholder="Thumbnail Image URL"
+required>
+
+<select id="category">
+
+<option>Programming</option>
+<option>Android</option>
+<option>AI</option>
+<option>Business</option>
+<option>Design</option>
+
+</select>
+
+<textarea
+id="description"
+placeholder="Course Description"></textarea>
+
+<button class="buy-btn">
+
+Add Course
+
+</button>
+
+</form>
+
+</section>
+
+<h2 class="title">
+
+Courses
+
+</h2>
+
+<div id="courseList">
+
+Loading...
+
+</div>
+
+<script type="module" src="admin.js"></script>
+
+</body>
+</html>
