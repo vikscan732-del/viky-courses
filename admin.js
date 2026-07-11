@@ -9,6 +9,14 @@ deleteDoc,
 doc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+import {
+getAuth,
+GoogleAuthProvider,
+signInWithPopup,
+signOut,
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 const firebaseConfig = {
 apiKey: "AIzaSyBBvHqTLICABX2uAHyEQkb7E1RnwTzKy8k",
 authDomain: "viky-courses.firebaseapp.com",
@@ -22,126 +30,53 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
-const form = document.getElementById("courseForm");
-const courseList = document.getElementById("courseList");
-const success = document.getElementById("success");
+const auth = getAuth(app);
 
-async function loadCourses(){
+const provider = new GoogleAuthProvider();
+const ADMIN_EMAIL = "vikscan732@gmail.com";
 
-courseList.innerHTML="<p>Loading...</p>";
+async function login(){
 
-const snapshot=await getDocs(collection(db,"courses"));
+try{
 
-courseList.innerHTML="";
+await signInWithPopup(auth,provider);
 
-snapshot.forEach((item)=>{
+}catch(err){
 
-const course=item.data();
-
-courseList.innerHTML+=`
-<div class="course-item">
-
-<div class="course-info">
-
-<h3>${course.title}</h3>
-
-<p>₹${course.price}</p>
-
-<p>${course.category}</p>
-
-</div>
-
-<button
-class="delete-btn"
-onclick="deleteCourse('${item.id}')">
-
-Delete
-
-</button>
-
-</div>
-`;
-
-});
+alert(err.message);
 
 }
 
-form.addEventListener("submit", async (e) => {
+}
 
-e.preventDefault();
+onAuthStateChanged(auth,(user)=>{
 
-const title = document.getElementById("title").value.trim();
+if(!user){
 
-const price = Number(document.getElementById("price").value);
+const ok=confirm("Admin login required.\nPress OK to sign in with Google.");
 
-const image = document.getElementById("image").value.trim();
+if(ok){
 
-const category = document.getElementById("category").value;
+login();
 
-const description = document.getElementById("description").value.trim();
-
-if(!title || !price || !image){
-
-alert("Please fill all required fields.");
+}
 
 return;
 
 }
 
-try{
+if(user.email!==ADMIN_EMAIL){
 
-await addDoc(collection(db,"courses"),{
+alert("Access denied.");
 
-title,
-price,
-image,
-category,
-description
+signOut(auth);
+
+return;
+
+}
+
+document.body.style.display="block";
+
+loadCourses();
 
 });
-
-success.style.display="block";
-
-setTimeout(()=>{
-
-success.style.display="none";
-
-},2000);
-
-form.reset();
-
-loadCourses();
-
-}catch(err){
-
-console.error(err);
-
-alert("Failed to save course.");
-
-}
-
-});
-
-async function deleteCourse(id){
-
-if(!confirm("Delete this course?")) return;
-
-try{
-
-await deleteDoc(doc(db,"courses",id));
-
-loadCourses();
-
-}catch(err){
-
-console.error(err);
-
-alert("Unable to delete course.");
-
-}
-
-}
-
-window.deleteCourse = deleteCourse;
-
-loadCourses();
