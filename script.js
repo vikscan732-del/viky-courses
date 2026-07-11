@@ -5,96 +5,151 @@ collection,
 getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const container = document.getElementById("courses");
-const search = document.querySelector(".search");
+const coursesContainer = document.getElementById("courses");
+const searchInput = document.querySelector(".search");
 
-let courses = [];
+let allCourses = [];
 
-async function loadCourses() {
+async function loadCourses(){
 
-    container.innerHTML = "<h2>Loading courses...</h2>";
+coursesContainer.innerHTML="<h2 style='text-align:center'>Loading Courses...</h2>";
 
-    try {
+try{
 
-        const snapshot = await getDocs(collection(db, "courses"));
+const snapshot=await getDocs(collection(db,"courses"));
 
-        courses = [];
+allCourses=[];
 
-        snapshot.forEach((doc) => {
+snapshot.forEach(doc=>{
 
-            courses.push({
-                id: doc.id,
-                ...doc.data()
-            });
+allCourses.push({
 
-        });
+id:doc.id,
 
-        displayCourses(courses);
-
-    } catch (err) {
-
-        console.error(err);
-
-        container.innerHTML = `
-        <h2 style="text-align:center;color:red;">
-        Unable to load courses
-        </h2>`;
-
-    function displayCourses(list) {
-
-    container.innerHTML = "";
-
-    if (list.length === 0) {
-
-        container.innerHTML = `
-        <h2 style="text-align:center;">
-        No Courses Found
-        </h2>`;
-        return;
-
-    }
-
-    list.forEach(course => {
-
-        container.innerHTML += `
-        <div class="course-card">
-
-            <img src="${course.image}" alt="${course.title}">
-
-            <div class="course-content">
-
-                <h3>${course.title}</h3>
-
-                <p class="price">₹${course.price}</p>
-
-                <span class="category">${course.category}</span>
-
-                <a href="#" class="buy-btn">
-                Buy Now
-                </a>
-
-            </div>
-
-        </div>
-        `;
-
-    });
-
-}
-
-search.addEventListener("input", () => {
-
-    const keyword = search.value.toLowerCase();
-
-    const filtered = courses.filter(course =>
-        course.title.toLowerCase().includes(keyword)
-    );
-
-    displayCourses(filtered);
+...doc.data()
 
 });
 
-loadCourses();
+});
+
+renderCourses(allCourses);
+
+}catch(error){
+
+console.error(error);
+
+coursesContainer.innerHTML=`
+<h2 style="text-align:center;color:red;">
+Unable to load courses.
+</h2>
+`;
 
 }
 
+}
+
+function renderCourses(courseList){
+
+coursesContainer.innerHTML="";
+
+if(courseList.length===0){
+
+coursesContainer.innerHTML=`
+<h2 style="text-align:center">
+No Courses Found
+</h2>
+`;
+
+return;
+
+}
+
+courseList.forEach(course=>{
+
+coursesContainer.innerHTML+=`
+
+<div class="course-card">
+
+<img src="${course.image}" alt="${course.title}">
+
+<div class="course-content">
+
+<h3>${course.title}</h3>
+
+<p class="price">₹${course.price}</p>
+
+<p class="category">${course.category}</p>
+
+<p>${course.description || ""}</p>
+
+<a href="#" class="buy-btn">
+
+Buy Now
+
+</a>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+searchInput.addEventListener("input",()=>{
+
+const keyword=searchInput.value.trim().toLowerCase();
+
+if(keyword===""){
+
+renderCourses(allCourses);
+
+return;
+
+}
+
+const filteredCourses=allCourses.filter(course=>{
+
+const title=(course.title||"").toLowerCase();
+
+const category=(course.category||"").toLowerCase();
+
+const description=(course.description||"").toLowerCase();
+
+return title.includes(keyword) ||
+category.includes(keyword) ||
+description.includes(keyword);
+
+});
+
+renderCourses(filteredCourses);
+
+});
+
+// ===============================
+// course49 Homepage Initialization
+// ===============================
+
+async function startApp(){
+
+try{
+
+await loadCourses();
+
+}catch(error){
+
+console.error("Startup Error:",error);
+
+coursesContainer.innerHTML=`
+<h2 style="text-align:center;color:red;">
+Unable to connect to Firebase.
+</h2>
+`;
+
+}
+
+}
+
+startApp();
