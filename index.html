@@ -1,62 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CourseFlix</title>
+<title>course49</title>
 
-<style>
-body{
-margin:0;
-background:#111;
-font-family:Arial;
-color:white;
-text-align:center;
-}
-
-header{
-background:#d60000;
-padding:18px;
-font-size:28px;
-font-weight:bold;
-}
-
-.hero{
-padding:40px 20px;
-}
-
-button{
-background:#ff0000;
-color:white;
-border:none;
-padding:15px 30px;
-border-radius:8px;
-font-size:18px;
-}
-
-.course{
-background:#222;
-margin:20px;
-padding:20px;
-border-radius:12px;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>COURSEFLIX</header>
+<header class="header">
+<h1>course49</h1>
+</header>
 
-<div class="hero">
-<h2>Learn New Skills</h2>
+<section class="hero">
+<h2>Learn Without Limits</h2>
 <p>Premium Courses at Affordable Prices</p>
-<button>Browse Courses</button>
-</div>
 
-<div class="course">
-<h3>Sample Course</h3>
-<p>₹299</p>
-</div>
+<input
+type="text"
+placeholder="Search courses..."
+class="search">
+
+<button>Browse Courses</button>
+</section>
+
+<div id="courses"></div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
