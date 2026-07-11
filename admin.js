@@ -1,114 +1,147 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+addDoc,
+getDocs,
+deleteDoc,
+doc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyBBvHqTLICABX2uAHyEQkb7E1RnwTzKy8k",
+authDomain: "viky-courses.firebaseapp.com",
+projectId: "viky-courses",
+storageBucket: "viky-courses.firebasestorage.app",
+messagingSenderId: "301659825576",
+appId: "1:301659825576:web:6511bd2765dd617ce6699d"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
 const form = document.getElementById("courseForm");
 const courseList = document.getElementById("courseList");
 const success = document.getElementById("success");
 
-let courses = JSON.parse(localStorage.getItem("course49_courses")) || [];
+async function loadCourses(){
 
-function saveCourses() {
-    localStorage.setItem("course49_courses", JSON.stringify(courses));
-}
+courseList.innerHTML="<p>Loading...</p>";
 
-function renderCourses() {
+const snapshot=await getDocs(collection(db,"courses"));
 
-    courseList.innerHTML = "";
+courseList.innerHTML="";
 
-    if(courses.length === 0){
-        courseList.innerHTML = "<p>No courses added yet.</p>";
-        return;
-    }
+snapshot.forEach((item)=>{
 
-    courses.forEach((course,index)=>{
+const course=item.data();
 
-        courseList.innerHTML += `
-        <div class="course-item">
+courseList.innerHTML+=`
+<div class="course-item">
 
-            <div class="course-info">
+<div class="course-info">
 
-                <h3>${course.title}</h3>
+<h3>${course.title}</h3>
 
-                <p class="price">₹${course.price}</p>
+<p>₹${course.price}</p>
 
-                <p>${course.category}</p>
+<p>${course.category}</p>
 
-            </div>
+</div>
 
-            <button class="delete-btn" onclick="deleteCourse(${index})">
+<button
+class="delete-btn"
+onclick="deleteCourse('${item.id}')">
 
-            Delete
+Delete
 
-            </button>
+</button>
 
-        </div>
-        `;
-
-    });
-
-}
-
-function deleteCourse(index){
-
-    if(confirm("Delete this course?")){
-
-        courses.splice(index,1);
-
-        saveCourses();
-
-        renderCourses();
-
-    }
-
-}
-
-form.addEventListener("submit",function(e){
-
-    e.preventDefault();
-
-    const title=document.getElementById("title").value.trim();
-
-    const price=document.getElementById("price").value.trim();
-
-    const image=document.getElementById("image").value.trim();
-
-    const category=document.getElementById("category").value;
-
-    const description=document.getElementById("description").value.trim();
-
-    if(title==="" || price==="" || image===""){
-
-        alert("Please fill all required fields.");
-
-        return;
-
-    }
-
-    courses.push({
-
-        title,
-
-        price,
-
-        image,
-
-        category,
-
-        description
-
-    });
-
-    saveCourses();
-
-    renderCourses();
-
-    success.style.display="block";
-
-    setTimeout(()=>{
-
-        success.style.display="none";
-
-    },2000);
-
-    form.reset();
+</div>
+`;
 
 });
 
-renderCourses();
+}
+
+form.addEventListener("submit", async (e) => {
+
+e.preventDefault();
+
+const title = document.getElementById("title").value.trim();
+
+const price = Number(document.getElementById("price").value);
+
+const image = document.getElementById("image").value.trim();
+
+const category = document.getElementById("category").value;
+
+const description = document.getElementById("description").value.trim();
+
+if(!title || !price || !image){
+
+alert("Please fill all required fields.");
+
+return;
+
+}
+
+try{
+
+await addDoc(collection(db,"courses"),{
+
+title,
+price,
+image,
+category,
+description
+
+});
+
+success.style.display="block";
+
+setTimeout(()=>{
+
+success.style.display="none";
+
+},2000);
+
+form.reset();
+
+loadCourses();
+
+}catch(err){
+
+console.error(err);
+
+alert("Failed to save course.");
+
+}
+
+});
+
+async function deleteCourse(id){
+
+if(!confirm("Delete this course?")) return;
+
+try{
+
+await deleteDoc(doc(db,"courses",id));
+
+loadCourses();
+
+}catch(err){
+
+console.error(err);
+
+alert("Unable to delete course.");
+
+}
+
+}
+
+window.deleteCourse = deleteCourse;
+
+loadCourses();
