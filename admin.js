@@ -1,4 +1,5 @@
 import { db } from "./firebase-config.js";
+import { checkAdmin } from "./auth.js";
 
 import {
 collection,
