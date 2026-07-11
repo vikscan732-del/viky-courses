@@ -167,6 +167,26 @@ return;
 
 try{
 
+if(editId){
+
+await updateDoc(doc(db,"courses",editId),{
+
+title,
+price,
+image,
+category,
+description
+
+});
+
+alert("Course Updated Successfully");
+
+editId=null;
+
+form.querySelector("button").textContent="Add Course";
+
+}else{
+
 await addDoc(collection(db,"courses"),{
 
 title,
@@ -177,6 +197,10 @@ description,
 createdAt:Date.now()
 
 });
+
+alert("Course Added Successfully");
+
+}
 
 alert("Course Added Successfully");
 
