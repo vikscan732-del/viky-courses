@@ -15,6 +15,7 @@ const form=document.getElementById("courseForm");
 const courseList=document.getElementById("courseList");
 
 let courses=[];
+let editId=null;
 
 async function loadCourses(){
 
@@ -70,13 +71,26 @@ courseList.innerHTML+=`
 
 <p>${course.description}</p>
 
+<div style="display:flex;gap:10px;">
+
 <button
 class="buy-btn"
+onclick="editCourse('${course.id}')">
+
+Edit
+
+</button>
+
+<button
+class="buy-btn"
+style="background:#444;"
 onclick="deleteCourse('${course.id}')">
 
 Delete
 
 </button>
+
+</div>
 
 </div>
 
