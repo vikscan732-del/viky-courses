@@ -178,4 +178,8 @@ Unable to connect to Firebase.
 
 }
 
+checkAdmin(()=>{
+
 startApp();
+
+});
