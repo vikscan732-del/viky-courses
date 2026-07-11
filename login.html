@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>course49 Login</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="hero">
+
+<div class="banner">
+
+<h1>Admin Login</h1>
+
+<p>Only authorized admin can continue.</p>
+
+<button id="loginBtn" class="buy-btn">
+
+Sign in with Google
+
+</button>
+
+</div>
+
+</div>
+
+<script type="module">
+
+import { login } from "./auth.js";
+
+document.getElementById("loginBtn").onclick=()=>{
+
+login();
+
+};
+
+</script>
+
+</body>
+</html>
