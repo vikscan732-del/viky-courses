@@ -117,6 +117,31 @@ loadCourses();
 }
 
 window.deleteCourse=deleteCourse;
+function editCourse(id){
+
+const course=courses.find(c=>c.id===id);
+
+if(!course) return;
+
+editId=id;
+
+document.getElementById("title").value=course.title;
+document.getElementById("price").value=course.price;
+document.getElementById("image").value=course.image;
+document.getElementById("category").value=course.category;
+document.getElementById("description").value=course.description;
+
+form.querySelector("button").textContent="Update Course";
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+window.editCourse=editCourse;
+
 
 form.addEventListener("submit", async (e)=>{
 
