@@ -3,15 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>course49 Admin</title>
+<title>course49 Admin Panel</title>
 
 <style>
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
 body{
-background:#111;
+background:#0b0b0b;
 color:white;
-font-family:Arial;
 padding:20px;
+}
+
+.container{
+max-width:700px;
+margin:auto;
 }
 
 h1{
@@ -21,35 +32,94 @@ margin-bottom:25px;
 }
 
 form{
-background:#1b1b1b;
+background:#181818;
 padding:20px;
 border-radius:15px;
-max-width:500px;
-margin:auto;
 }
 
-input,textarea,select{
+label{
+display:block;
+margin-top:15px;
+margin-bottom:6px;
+}
+
+input,
+select,
+textarea{
+
 width:100%;
 padding:14px;
-margin-bottom:15px;
+background:#222;
+color:white;
 border:none;
-border-radius:8px;
+border-radius:10px;
 font-size:16px;
+
+}
+
+textarea{
+resize:none;
 }
 
 button{
+
 width:100%;
+margin-top:20px;
 padding:15px;
 background:#E50914;
-color:white;
 border:none;
-border-radius:8px;
+border-radius:10px;
 font-size:18px;
+font-weight:bold;
+color:white;
 cursor:pointer;
+
 }
 
 button:hover{
-background:#ff2a2a;
+
+background:#ff3030;
+
+}
+
+.success{
+
+display:none;
+margin-top:15px;
+padding:12px;
+background:#0f6d31;
+border-radius:10px;
+text-align:center;
+
+}
+
+#courseList{
+
+margin-top:30px;
+
+}
+
+.course-item{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#181818;
+padding:15px;
+border-radius:10px;
+margin-bottom:15px;
+
+}
+
+.delete-btn{
+
+background:#a40000;
+padding:10px 15px;
+border:none;
+border-radius:8px;
+color:white;
+cursor:pointer;
+
 }
 
 </style>
@@ -58,23 +128,36 @@ background:#ff2a2a;
 
 <body>
 
+<div class="container">
+
 <h1>course49 Admin Panel</h1>
 
-<form>
+<form id="courseForm">
+
+<label>Course Title</label>
 
 <input
+id="title"
 type="text"
-placeholder="Course Title">
+required>
+
+<label>Price</label>
 
 <input
+id="price"
 type="number"
-placeholder="Price">
+required>
+
+<label>Thumbnail Image URL</label>
 
 <input
+id="image"
 type="text"
-placeholder="Thumbnail Image URL">
+required>
 
-<select>
+<label>Category</label>
+
+<select id="category">
 
 <option>Programming</option>
 
@@ -86,11 +169,15 @@ placeholder="Thumbnail Image URL">
 
 <option>Design</option>
 
+<option>Marketing</option>
+
 </select>
 
+<label>Description</label>
+
 <textarea
-rows="5"
-placeholder="Course Description"></textarea>
+id="description"
+rows="5"></textarea>
 
 <button type="submit">
 
@@ -98,10 +185,26 @@ Add Course
 
 </button>
 
+<div
+class="success"
+id="success">
+
+Course Added Successfully
+
+</div>
+
 </form>
 
-</body>
-</html>
+<h2 style="margin-top:35px;">
+
+All Courses
+
+</h2>
+
+<div id="courseList">
+  </div>
+
+</div>
 
 <script type="module" src="admin.js"></script>
 
