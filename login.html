@@ -30,17 +30,20 @@ Sign in with Google
 
 </div>
 
-<script type="module">
 
+<script type="module">
 import { login } from "./auth.js";
 
-document.getElementById("loginBtn").onclick=()=>{
-
-login();
-
-};
-
+document.getElementById("loginBtn").addEventListener("click", async () => {
+    try {
+        await login();
+        window.location.href = "admin.html";
+    } catch (e) {
+        alert("Login Error:\n" + e.code + "\n" + e.message);
+        console.error(e);
+    }
+});
 </script>
-
+  
 </body>
 </html>
