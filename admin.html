@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>course49 Admin</title>
 
 <link rel="stylesheet" href="style.css">
@@ -40,9 +44,15 @@ placeholder="Course Title"
 required>
 
 <input
+id="originalPrice"
+type="number"
+placeholder="Original Price (499)"
+required>
+
+<input
 id="price"
 type="number"
-placeholder="Course Price"
+placeholder="Selling Price (33)"
 required>
 
 <input
@@ -61,14 +71,37 @@ required>
 
 </select>
 
+<select id="badge">
+
+<option value="">No Badge</option>
+
+<option>🔥 Best Seller</option>
+
+<option>⭐ Most Popular</option>
+
+<option>🆕 New Course</option>
+
+<option>💯 Limited Offer</option>
+
+</select>
 <textarea
 id="description"
-placeholder="Course Description"></textarea>
+placeholder="Short Course Description"></textarea>
 
-  <input
+<textarea
+id="courseInfo"
+placeholder="Course Information
+
+✔ Lifetime Access
+✔ Certificate
+✔ Source Code
+✔ HD Videos"></textarea>
+
+<input
 id="courseLink"
 type="text"
-placeholder="Course Link (Google Drive / Telegram / YouTube)">
+placeholder="Course Link (Google Drive / Telegram / YouTube)"
+required>
 
 <button class="buy-btn">
 
