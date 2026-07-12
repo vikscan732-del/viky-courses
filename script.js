@@ -1,10 +1,16 @@
-import { db } from "./firebase-config.js";
+import { db, auth, provider } from "./firebase-config.js";
 import { buyCourse } from "./payment.js";
 
 import {
 collection,
 getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+signInWithPopup,
+signOut,
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const coursesContainer=document.getElementById("courses");
 
@@ -414,3 +420,46 @@ buyCourse(course);
 }
 
 window.buyCourseById=buyCourseById;
+
+
+const loginBtn=document.getElementById("loginBtn");
+
+onAuthStateChanged(auth,(user)=>{
+
+if(user){
+
+loginBtn.textContent="Logout";
+
+}else{
+
+loginBtn.textContent="Login";
+
+}
+
+});
+
+loginBtn.addEventListener("click",async(e)=>{
+
+e.preventDefault();
+
+if(auth.currentUser){
+
+await signOut(auth);
+
+return;
+
+}
+
+try{
+
+await signInWithPopup(auth,provider);
+
+}catch(error){
+
+console.error(error);
+
+alert("Login failed.");
+
+}
+
+});
