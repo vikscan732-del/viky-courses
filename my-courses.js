@@ -77,7 +77,9 @@ container.innerHTML+=`
 
 <p class="price">₹${course.price}</p>
 
-<button class="buy-btn">
+<button
+class="buy-btn"
+onclick="openCourse('${course.courseLink}')">
 
 Open Course
 
@@ -92,3 +94,19 @@ Open Course
 });
 
 }
+
+function openCourse(link){
+
+if(!link){
+
+alert("Course link not available.");
+
+return;
+
+}
+
+window.open(link,"_blank");
+
+}
+
+window.openCourse=openCourse;
