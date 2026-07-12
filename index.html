@@ -17,7 +17,7 @@ href="style.css">
 
 <body>
 
-<header class="header">
+<header class="mobile-header">
 
 <div class="logo">
 
@@ -25,70 +25,68 @@ course49
 
 </div>
 
-<nav>
+<a
+href="profile.html"
+class="profile-icon">
 
-<a href="#">Home</a>
+👤
 
-<a href="#">Categories</a>
-
-<a href="my-courses.html">My Courses</a>
-
-  <a href="contact.html">Contact Us</a>
-
-<a href="profile.html">Profile</a>
-
-<a href="#" id="loginBtn">Login</a>
-
-<a href="admin.html">Admin</a>
-
-</nav>
+</a>
 
 </header>
 
-<section class="hero">
-
-<div class="banner">
-
-<h1>
-
-Learn New Skills
-
-</h1>
-
-<p>
-
-Premium Courses At Affordable Prices
-
-</p>
-
-<button class="explore-btn">
-
-Explore Courses
-
-</button>
-
-</div>
+<section class="search-section">
 
 <input
 type="text"
 class="search"
 placeholder="🔍 Search Courses">
 
-<div class="categories">
+</section>
 
-<button>Programming</button>
+<section class="category-scroll">
 
-<button>AI</button>
+<button class="active">
 
-<button>Android</button>
+All
 
-<button>Business</button>
+</button>
 
-<button>Marketing</button>
+<button>
 
-<button>Design</button>
+Programming
 
-</div>
+</button>
+
+<button>
+
+Android
+
+</button>
+
+<button>
+
+AI
+
+</button>
+
+<button>
+
+Business
+
+</button>
+
+<button>
+
+Marketing
+
+</button>
+
+<button>
+
+Design
+
+</button>
 
 </section>
 
@@ -102,51 +100,82 @@ Trending Courses
 
 </div>
 
-<footer>
+  <footer class="mobile-footer">
+
+<div class="footer-links">
+
+<a href="privacy.html">
+
+Privacy
+
+</a>
+
+<a href="terms.html">
+
+Terms
+
+</a>
+
+<a href="refund.html">
+
+Refund
+
+</a>
+
+<a href="contact.html">
+
+Contact
+
+</a>
+
+</div>
 
 <p>
 
 © 2026 course49
 
-All Rights Reserved
-
 </p>
-
-<br>
-
-<a href="privacy.html">
-
-Privacy Policy
-
-</a>
-
-&nbsp; | &nbsp;
-
-<a href="terms.html">
-
-Terms & Conditions
-
-</a>
-
-&nbsp; | &nbsp;
-
-<a href="refund.html">
-
-Refund Policy
-
-</a>
-
-&nbsp; | &nbsp;
-
-<a href="contact.html">
-
-Contact Us
-
-</a>
 
 </footer>
 
+<nav class="bottom-nav">
+
+<a href="index.html" class="active">
+
+🏠
+
+<span>Home</span>
+
+</a>
+
+<a href="my-courses.html">
+
+📚
+
+<span>My Courses</span>
+
+</a>
+
+<a href="profile.html">
+
+👤
+
+<span>Profile</span>
+
+</a>
+
+<a href="contact.html">
+
+☎
+
+<span>Contact</span>
+
+</a>
+
+</nav>
+
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 <script type="module" src="script.js"></script>
 
 </body>
