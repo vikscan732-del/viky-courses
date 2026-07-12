@@ -256,3 +256,123 @@ height:190px;
 }
 
 }
+
+/* =========================
+course49 UI Upgrade
+========================= */
+
+.course-card{
+position:relative;
+overflow:hidden;
+}
+
+.course-card del{
+color:#888;
+font-size:15px;
+}
+
+.price{
+font-size:28px;
+font-weight:bold;
+color:#00ff99;
+margin-top:5px;
+}
+
+.category{
+display:inline-block;
+padding:6px 12px;
+border-radius:999px;
+font-size:13px;
+margin-bottom:12px;
+background:#E50914;
+color:#fff;
+}
+
+.course-content button{
+flex:1;
+}
+
+#coursePopup{
+animation:popupFade .25s ease;
+backdrop-filter:blur(5px);
+}
+
+#coursePopup img{
+width:100%;
+border-radius:12px;
+margin:15px 0;
+}
+
+#coursePopup h2{
+margin-bottom:10px;
+font-size:26px;
+}
+
+#coursePopup pre{
+background:#111;
+padding:12px;
+border-radius:10px;
+margin-top:12px;
+font-family:Arial;
+font-size:15px;
+line-height:1.6;
+overflow:auto;
+}
+
+@keyframes popupFade{
+
+from{
+
+opacity:0;
+transform:scale(.9);
+
+}
+
+to{
+
+opacity:1;
+transform:scale(1);
+
+}
+
+}
+
+.buy-btn{
+transition:.25s;
+}
+
+.buy-btn:hover{
+
+transform:scale(1.03);
+
+}
+
+.course-card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 10px 30px rgba(229,9,20,.35);
+
+}
+
+@media(max-width:768px){
+
+#coursePopup{
+
+padding:15px;
+
+}
+
+#coursePopup h2{
+
+font-size:22px;
+
+}
+
+.price{
+
+font-size:24px;
+
+}
+
+}
