@@ -31,7 +31,7 @@ return;
 
 const options={
 
-key:"YOUR_RAZORPAY_KEY_ID",
+key:"rzp_test_TCVI6paOSHulk1",
 
 amount:Number(course.price)*100,
 
