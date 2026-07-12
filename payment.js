@@ -53,6 +53,8 @@ courseId:course.id,
 
 courseTitle:course.title,
 
+courseLink:course.courseLink,
+
 price:course.price,
 
 paymentId:response.razorpay_payment_id,
