@@ -204,7 +204,13 @@ alert("Course Added Successfully");
 }
 
 form.reset();
-
+  
+document.getElementById("courseLink").value="";
+  
+editId=null;
+  
+form.querySelector("button").textContent="Add Course";
+  
 loadCourses();
 
 }catch(err){
