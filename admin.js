@@ -130,6 +130,7 @@ document.getElementById("price").value=course.price;
 document.getElementById("image").value=course.image;
 document.getElementById("category").value=course.category;
 document.getElementById("description").value=course.description;
+document.getElementById("courseLink").value=course.courseLink || "";
 
 form.querySelector("button").textContent="Update Course";
 
@@ -156,6 +157,8 @@ const image=document.getElementById("image").value.trim();
 const category=document.getElementById("category").value;
 
 const description=document.getElementById("description").value.trim();
+
+const courseLink=document.getElementById("courseLink").value.trim();
 
 if(!title || !price || !image){
 
@@ -195,6 +198,7 @@ price,
 image,
 category,
 description,
+courseLink,
 createdAt:Date.now()
 
 });
