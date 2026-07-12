@@ -1,4 +1,5 @@
 import { db } from "./firebase-config.js";
+import { buyCourse } from "./payment.js";
 
 import {
 collection,
@@ -82,11 +83,13 @@ coursesContainer.innerHTML+=`
 
 <p>${course.description || ""}</p>
 
-<a href="#" class="buy-btn">
+<button
+class="buy-btn"
+onclick="buyCourseById('${course.id}')">
 
 Buy Now
 
-</a>
+</button>
 
 </div>
 
@@ -153,3 +156,20 @@ Unable to connect to Firebase.
 }
 
 startApp();
+function buyCourseById(id){
+
+const course=allCourses.find(c=>c.id===id);
+
+if(!course){
+
+alert("Course not found.");
+
+return;
+
+}
+
+buyCourse(course);
+
+}
+
+window.buyCourseById=buyCourseById;
