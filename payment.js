@@ -23,7 +23,9 @@ if(!currentUser){
 
 alert("Please login with Google first.");
 
-location.href="login.html";
+alert("Please login with Google from the homepage.");
+
+return;
 
 return;
 
