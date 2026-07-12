@@ -203,8 +203,6 @@ alert("Course Added Successfully");
 
 }
 
-alert("Course Added Successfully");
-
 form.reset();
 
 loadCourses();
