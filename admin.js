@@ -160,7 +160,7 @@ const description=document.getElementById("description").value.trim();
 
 const courseLink=document.getElementById("courseLink").value.trim();
 
-if(!title || !price || !image){
+if(!title || !price || !image || !courseLink){
 
 alert("Please fill all required fields.");
 
