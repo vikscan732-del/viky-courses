@@ -175,7 +175,8 @@ title,
 price,
 image,
 category,
-description
+description,
+courseLink
 
 });
 
