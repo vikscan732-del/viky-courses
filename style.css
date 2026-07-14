@@ -593,3 +593,21 @@ opacity:.5;
 }
 
 }
+
+.login-btn{
+background:#E50914;
+color:#fff;
+padding:10px 18px;
+border-radius:25px;
+font-size:15px;
+font-weight:bold;
+text-decoration:none;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:.3s;
+}
+
+.login-btn:hover{
+background:#ff2b2b;
+}
