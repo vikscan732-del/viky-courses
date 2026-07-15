@@ -33,7 +33,7 @@ return;
 
 const options={
 
-key:"rzp_test_TCVI6paOSHulk1",
+key:"rzp_live_TDevGhVzwWl4V7",
 
 amount:Number(course.price)*100,
 
